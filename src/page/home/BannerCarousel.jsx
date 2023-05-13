@@ -25,7 +25,7 @@ const BannerCarousel = () => {
         pagination={{
           clickable: true,
         }}
-        modules={[Autoplay, Pagination, Navigation, EffectFade]}
+        modules={[Autoplay, Pagination, EffectFade]}
         className="mySwiper"
         effect="fade"
       >
