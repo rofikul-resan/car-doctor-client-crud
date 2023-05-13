@@ -1,11 +1,32 @@
+import { useContext } from "react";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const SingUp = () => {
+  const { createUser } = useContext(AuthContext);
+  const handleSinUp = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password);
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div>
       <div>
-        <form className="w-2/3 border-2 px-16 py-8 rounded-lg shadow-xl space-y-4">
+        <form
+          onSubmit={handleSinUp}
+          className="w-2/3 border-2 px-16 py-8 rounded-lg shadow-xl space-y-4"
+        >
           <h2 className="text-center font-semibold">Sing Up</h2>
           <div className="form-control">
             <label className="label">
@@ -61,7 +82,9 @@ const SingUp = () => {
           </div>
           <p className="text-center text-sm">
             Already have an account?{" "}
-            <Link className="text-[#FF3811] font-bold">Login</Link>
+            <Link to={"/auth/login"} className="text-[#FF3811] font-bold">
+              Login
+            </Link>
           </p>
         </form>
       </div>

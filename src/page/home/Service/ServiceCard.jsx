@@ -3,8 +3,8 @@
 import { BsArrowRight } from "react-icons/bs";
 
 const ServiceCard = ({ service }) => {
+  // eslint-disable-next-line no-unused-vars
   const { img, price, title, service_id } = service;
-  console.log(service);
   return (
     <div className="p-6 border">
       <div className="h-52 overflow-hidden rounded-md">

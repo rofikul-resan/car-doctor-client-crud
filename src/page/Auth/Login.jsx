@@ -1,10 +1,30 @@
+import { useContext } from "react";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
+  const handleLogIn = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    login(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div>
-      <form className="w-2/3 border-2 px-16 py-8 rounded-lg shadow-xl space-y-4">
+      <form
+        onSubmit={handleLogIn}
+        className="w-2/3 border-2 px-16 py-8 rounded-lg shadow-xl space-y-4"
+      >
         <h2 className="text-center font-semibold">Log in</h2>
         <div className="form-control">
           <label className="label">
@@ -49,7 +69,9 @@ const Login = () => {
         </div>
         <p className="text-center text-sm">
           Do not Have an account?{" "}
-          <Link className="text-[#FF3811] font-bold">Sign Up</Link>
+          <Link to={"/auth/sing-up"} className="text-[#FF3811] font-bold">
+            Sign Up
+          </Link>
         </p>
       </form>
     </div>

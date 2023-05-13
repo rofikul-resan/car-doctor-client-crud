@@ -1,10 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { BsHandbag, BsSearch } from "react-icons/bs";
 import { AiOutlineCloseCircle, AiOutlineMenuUnfold } from "react-icons/ai";
 import logo from "../assets/logo.svg";
 import { useState } from "react";
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
+  const location = useLocation();
   return (
     <nav className="flex  px-10   flex-col md:flex-row md:items-center my-8 justify-between relative ">
       <div className="md:hidden absolute right-10 top-5">
@@ -63,6 +64,11 @@ const Navbar = () => {
         >
           Contact
         </NavLink>
+        {location.pathname === "/auth/login" ? (
+          <Link to={"/auth/sing-up"}>Sing Up</Link>
+        ) : (
+          <Link to={"/auth/login"}>Log in</Link>
+        )}
         <div className="flex ml-auto md:ml-56  gap-4 items-center ">
           <BsHandbag className="text-xl font-bold" />
           <BsSearch className="text-xl font-bold" />
