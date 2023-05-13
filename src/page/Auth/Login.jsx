@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div>
-      <form className="w-2/3 border-2 p-16 rounded-lg shadow-xl space-y-6">
+      <form className="w-2/3 border-2 px-16 py-8 rounded-lg shadow-xl space-y-4">
+        <h2 className="text-center font-semibold">Log in</h2>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>

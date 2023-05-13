@@ -19,7 +19,7 @@ const Navbar = () => {
         <img className="h-20 mb-4" src={logo} alt="" />
       </div>
       <div
-        className={`md:ml-auto flex flex-col md:flex-row gap-4 mb-4 font-semibold text-lg ${
+        className={`md:ml-auto flex items-center flex-col md:flex-row gap-4 mb-4 font-semibold text-lg ${
           !showNav ? "hidden md:flex" : " flex"
         } `}
       >
