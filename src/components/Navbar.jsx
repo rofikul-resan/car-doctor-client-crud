@@ -1,23 +1,73 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { BsHandbag, BsSearch } from "react-icons/bs";
+import { AiOutlineCloseCircle, AiOutlineMenuUnfold } from "react-icons/ai";
 import logo from "../assets/logo.svg";
+import { useState } from "react";
 const Navbar = () => {
+  const [showNav, setShowNav] = useState(false);
   return (
-    <nav className="flex md:items-center justify-between ">
+    <nav className="flex  px-10   flex-col md:flex-row md:items-center my-8 justify-between relative ">
+      <div className="md:hidden absolute right-10 top-5">
+        <button
+          onClick={() => setShowNav(!showNav)}
+          className="text-2xl btn btn-ghost "
+        >
+          {!showNav ? <AiOutlineMenuUnfold /> : <AiOutlineCloseCircle />}
+        </button>
+      </div>
       <div>
-        <img className="h-20" src={logo} alt="" />
+        <img className="h-20 mb-4" src={logo} alt="" />
       </div>
-      <div className="flex gap-4 font-semibold text-lg">
-        <Link to={"/"}>Home</Link>
-        <Link to={"/"}>About</Link>
-        <Link to={"/"}>Services</Link>
-        <Link to={"/"}>Blog</Link>
-        <Link to={"/"}>Contact</Link>
-      </div>
-      <div className="flex  gap-4 items-center ">
-        <BsHandbag className="text-xl font-bold" />
-        <BsSearch className="text-xl font-bold" />
-        <Link className="btn btn-outline  text-[#FF3811]">Appointment</Link>
+      <div
+        className={`md:ml-auto flex flex-col md:flex-row gap-4 mb-4 font-semibold text-lg ${
+          !showNav ? "hidden md:flex" : " flex"
+        } `}
+      >
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "border-b-4 border-orange-800" : ""
+          }
+          to={"/"}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "border-b-4 border-orange-800" : ""
+          }
+          to={"/about"}
+        >
+          About
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "border-b-4 border-orange-800" : ""
+          }
+          to={"/service"}
+        >
+          Services
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "border-b-4 border-orange-800" : ""
+          }
+          to={"/blog"}
+        >
+          Blog
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "border-b-4 border-orange-800" : ""
+          }
+          to={"/contact"}
+        >
+          Contact
+        </NavLink>
+        <div className="flex ml-auto md:ml-56  gap-4 items-center ">
+          <BsHandbag className="text-xl font-bold" />
+          <BsSearch className="text-xl font-bold" />
+          <Link className="btn btn-outline  text-[#FF3811]">Appointment</Link>
+        </div>
       </div>
     </nav>
   );
