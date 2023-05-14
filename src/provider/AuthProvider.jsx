@@ -30,7 +30,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const updateUser = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      console.log(user);
       setLoading(false);
     });
     return () => updateUser();

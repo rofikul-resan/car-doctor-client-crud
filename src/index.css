@@ -14,3 +14,7 @@ h3 {
 h4 {
   @apply text-2xl;
 }
+
+.service-details-layout {
+  grid-template-columns: 2fr 1fr;
+}

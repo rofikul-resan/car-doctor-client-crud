@@ -44,7 +44,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "border-b-4 border-orange-800" : ""
           }
-          to={"/service"}
+          to={"/services"}
         >
           Services
         </NavLink>
