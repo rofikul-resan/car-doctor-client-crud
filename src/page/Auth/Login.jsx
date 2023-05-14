@@ -13,6 +13,7 @@ const Login = () => {
     console.log(email, password);
     login(email, password)
       .then((res) => {
+        form.reset();
         console.log(res.user);
       })
       .catch((err) => {
@@ -42,7 +43,7 @@ const Login = () => {
             <span className="label-text">Confirm Password</span>
           </label>
           <input
-            type="text"
+            type="password"
             placeholder="Your password"
             name="password"
             className="input input-bordered"

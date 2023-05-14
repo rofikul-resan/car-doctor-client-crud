@@ -2,8 +2,10 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { BsHandbag, BsSearch } from "react-icons/bs";
 import { AiOutlineCloseCircle, AiOutlineMenuUnfold } from "react-icons/ai";
 import logo from "../assets/logo.svg";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [showNav, setShowNav] = useState(false);
   const location = useLocation();
   return (
@@ -64,10 +66,27 @@ const Navbar = () => {
         >
           Contact
         </NavLink>
-        {location.pathname === "/auth/login" ? (
-          <Link to={"/auth/sing-up"}>Sing Up</Link>
+        {!user ? (
+          <>
+            {location.pathname === "/auth/login" ? (
+              <Link to={"/auth/sing-up"}>Sing Up</Link>
+            ) : (
+              <Link to={"/auth/login"}>Log in</Link>
+            )}
+          </>
         ) : (
-          <Link to={"/auth/login"}>Log in</Link>
+          <>
+            <Link>Profile</Link>
+            <Link
+              onClick={() =>
+                logOut()
+                  .then()
+                  .catch((e) => console.log(e))
+              }
+            >
+              Log Out
+            </Link>
+          </>
         )}
         <div className="flex ml-auto md:ml-56  gap-4 items-center ">
           <BsHandbag className="text-xl font-bold" />

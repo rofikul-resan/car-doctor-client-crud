@@ -1,8 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import loginImg from "../assets/images/login/login.svg";
 import "./AuthLayout.css";
 import Navbar from "../components/Navbar";
 const AuthLayout = () => {
+  const location = useLocation();
+  if (location.pathname === "/auth") {
+    return <Navigate to={"/"} replace={true} />;
+  }
   return (
     <div className="max-w-7xl mx-auto">
       <Navbar />
