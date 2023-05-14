@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
+  const location = useLocation();
+  const from = location?.state;
+  console.log(from);
   const navigate = useNavigate();
   const handleLogIn = (event) => {
     event.preventDefault();
@@ -15,7 +18,7 @@ const Login = () => {
     login(email, password)
       .then(() => {
         form.reset();
-        navigate("/");
+        navigate(from || "/");
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +74,11 @@ const Login = () => {
         </div>
         <p className="text-center text-sm">
           Do not Have an account?{" "}
-          <Link to={"/auth/sing-up"} className="text-[#FF3811] font-bold">
+          <Link
+            to={"/auth/sing-up"}
+            className="text-[#FF3811] font-bold"
+            state={from}
+          >
             Sign Up
           </Link>
         </p>

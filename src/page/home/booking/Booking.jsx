@@ -63,11 +63,9 @@ const Booking = () => {
       });
   };
 
-  if (loading) {
-    return <RequestLoading />;
-  }
   return (
     <>
+      {loading && <RequestLoading />}
       <div>
         <Banner info={"Booking Details"} />
         <div className="my-24">

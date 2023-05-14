@@ -1,10 +1,14 @@
 import { useContext } from "react";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const SingUp = () => {
+  const navigate = useNavigate();
   const { createUser } = useContext(AuthContext);
+  const location = useLocation();
+  const from = location?.state;
+  console.log(from);
   const handleSinUp = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -14,7 +18,7 @@ const SingUp = () => {
     console.log(name, email, password);
     createUser(email, password)
       .then((res) => {
-        console.log(res.user);
+        navigate(from || "/");
       })
       .catch((err) => {
         console.log(err);
@@ -55,7 +59,7 @@ const SingUp = () => {
               <span className="label-text">Confirm Password</span>
             </label>
             <input
-              type="text"
+              type="password"
               placeholder="Your password"
               name="password"
               className="input input-bordered"

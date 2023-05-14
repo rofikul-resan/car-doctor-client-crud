@@ -7,6 +7,7 @@ import SingUp from "../page/Auth/SingUp";
 import CheckOut from "../page/home/checkOut/CheckOut";
 import ServiceDetails from "../page/home/Service/serviceDetails/ServiceDetails";
 import Booking from "../page/home/booking/Booking";
+import PrivetRouter from "./PrivetRouter";
 
 const router = createBrowserRouter([
   {
@@ -19,11 +20,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/booking",
-        element: <Booking />,
+        element: (
+          <PrivetRouter>
+            <Booking />
+          </PrivetRouter>
+        ),
       },
       {
         path: "services/:id",
-        element: <ServiceDetails />,
+        element: (
+          <PrivetRouter>
+            <ServiceDetails />
+          </PrivetRouter>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/services/${params.id}`),
       },
