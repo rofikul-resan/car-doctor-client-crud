@@ -24,6 +24,17 @@ const CheckOut = () => {
       serviceId: service._id,
     };
     console.log(orderInfo);
+    fetch(`http://localhost:5000/orders/${service._id}`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(orderInfo),
+    })
+      .then((res) => res.json())
+      .then((date) => {
+        console.log(date);
+      });
   };
   return (
     <div>
