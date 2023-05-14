@@ -6,6 +6,7 @@ import Login from "../page/Auth/Login";
 import SingUp from "../page/Auth/SingUp";
 import CheckOut from "../page/home/checkOut/CheckOut";
 import ServiceDetails from "../page/home/Service/serviceDetails/ServiceDetails";
+import Booking from "../page/home/booking/Booking";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/booking",
+        element: <Booking />,
       },
       {
         path: "services/:id",

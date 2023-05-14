@@ -6,6 +6,7 @@ import { AuthContext } from "../../../provider/AuthProvider";
 const CheckOut = () => {
   const { user } = useContext(AuthContext);
   const service = useLoaderData();
+  console.log(service);
   const handelCheckOut = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -15,13 +16,13 @@ const CheckOut = () => {
     const date = form.date.value;
     const massage = form.textarea.value;
     const orderInfo = {
+      img: service.img,
       name,
       email,
       serviceCost,
       date,
       massage,
       serviceName: service.title,
-      serviceId: service._id,
     };
     console.log(orderInfo);
     fetch(`http://localhost:5000/orders/${service._id}`, {
@@ -34,6 +35,7 @@ const CheckOut = () => {
       .then((res) => res.json())
       .then((date) => {
         console.log(date);
+        form.reset();
       });
   };
   return (
@@ -79,7 +81,7 @@ const CheckOut = () => {
               <input
                 type="text"
                 placeholder="Service Cost"
-                defaultValue={"$" + service.price}
+                defaultValue={service.price}
                 name="serviceCost"
                 className="input input-bordered"
               />

@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLogIn = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -12,9 +13,9 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
     login(email, password)
-      .then((res) => {
+      .then(() => {
         form.reset();
-        console.log(res.user);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);

@@ -38,26 +38,26 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "border-b-4 border-orange-800" : ""
           }
-          to={"/about"}
+          to={"/booking"}
         >
-          About
+          Booking
         </NavLink>
-        <NavLink
+        {/* <NavLink
           className={({ isActive }) =>
             isActive ? "border-b-4 border-orange-800" : ""
           }
           to={"/services"}
         >
           Services
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           className={({ isActive }) =>
             isActive ? "border-b-4 border-orange-800" : ""
           }
           to={"/blog"}
         >
           Blog
-        </NavLink>
+        </NavLink> */}
         <NavLink
           className={({ isActive }) =>
             isActive ? "border-b-4 border-orange-800" : ""

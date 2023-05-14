@@ -18,3 +18,7 @@ h4 {
 .service-details-layout {
   grid-template-columns: 2fr 1fr;
 }
+
+.booking-table-layout {
+  grid-template-columns: 0.5fr 2fr 3fr 3fr 3fr 1.3fr;
+}
