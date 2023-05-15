@@ -3,24 +3,28 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import Banner from "../../../components/Banner";
 import BookingCard from "./BookingCard";
 import RequestLoading from "../../../components/RequestLoading";
+import authorizationGetMethod from "../../../provider/AuthorizationGetMethod";
 
 const Booking = () => {
   const [loading, setLoading] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [bookService, setBookService] = useState([]);
   const url = `http://localhost:5000/booking?email=${user?.email}`;
   useEffect(() => {
     setLoading(true);
-    fetch(url)
+    fetch(url, authorizationGetMethod)
       .then((res) => res.json())
       .then((data) => {
+        if (data.error) {
+          logOut().then().catch();
+          return;
+        }
         setLoading(false);
         setBookService(data);
       });
-  }, [url]);
+  }, [url, logOut]);
 
   const handleConform = (id) => {
-    setLoading(true);
     fetch(`http://localhost:5000/booking/${id}`, {
       method: "PATCH",
       headers: {
@@ -35,7 +39,6 @@ const Booking = () => {
           const update = bookService.find((bs) => bs._id === id);
           update.state = "conform";
           setBookService([update, ...remain]);
-          setLoading(false);
         }
       })
       .catch((err) => {
