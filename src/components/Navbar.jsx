@@ -80,7 +80,7 @@ const Navbar = () => {
             <Link
               onClick={() =>
                 logOut()
-                  .then()
+                  .then(() => localStorage.removeItem("car-token"))
                   .catch((e) => console.log(e))
               }
             >

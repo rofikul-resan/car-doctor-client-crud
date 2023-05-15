@@ -18,7 +18,22 @@ const SingUp = () => {
     console.log(name, email, password);
     createUser(email, password)
       .then((res) => {
+        form.reset();
         navigate(from || "/");
+        const user = res.user;
+        console.log(user);
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email: user.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("car-token", data.token);
+          });
       })
       .catch((err) => {
         console.log(err);

@@ -16,9 +16,23 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
     login(email, password)
-      .then(() => {
+      .then((res) => {
         form.reset();
         navigate(from || "/");
+        const user = res.user;
+        console.log(user);
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email: user.email, uid: user.uid }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("car-token", data.token);
+          });
       })
       .catch((err) => {
         console.log(err);
