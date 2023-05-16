@@ -34,13 +34,17 @@ const router = createBrowserRouter([
           </PrivetRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://car-doctor-server-omega-azure.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "check-out/:id",
         element: <CheckOut />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/check-out/${params.id}`),
+          fetch(
+            `https://car-doctor-server-omega-azure.vercel.app/check-out/${params.id}`
+          ),
       },
     ],
   },

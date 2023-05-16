@@ -3,16 +3,21 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import Banner from "../../../components/Banner";
 import BookingCard from "./BookingCard";
 import RequestLoading from "../../../components/RequestLoading";
-import authorizationGetMethod from "../../../provider/AuthorizationGetMethod";
+import ScrollToTop from "../../../components/ScrollToTop";
 
 const Booking = () => {
   const [loading, setLoading] = useState(false);
   const { user, logOut } = useContext(AuthContext);
   const [bookService, setBookService] = useState([]);
-  const url = `http://localhost:5000/booking?email=${user?.email}`;
+  const url = `https://car-doctor-server-omega-azure.vercel.app/booking?email=${user?.email}`;
   useEffect(() => {
     setLoading(true);
-    fetch(url, authorizationGetMethod)
+    fetch(url, {
+      method: "GET",
+      headers: {
+        authorization: `berar ${localStorage.getItem("car-token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
@@ -25,7 +30,7 @@ const Booking = () => {
   }, [url, logOut]);
 
   const handleConform = (id) => {
-    fetch(`http://localhost:5000/booking/${id}`, {
+    fetch(`https://car-doctor-server-omega-azure.vercel.app/booking/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -48,7 +53,7 @@ const Booking = () => {
   };
   const handleDelete = (id) => {
     setLoading(true);
-    fetch(`http://localhost:5000/booking/${id}`, {
+    fetch(`https://car-doctor-server-omega-azure.vercel.app/booking/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -68,6 +73,7 @@ const Booking = () => {
 
   return (
     <>
+      <ScrollToTop />
       {loading && <RequestLoading />}
       <div>
         <Banner info={"Booking Details"} />

@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Banner from "../../../../components/Banner";
 import StepCard from "./StepCard";
 import ServiceDetailsRight from "./ServiceDetailsRight";
+import ScrollToTop from "../../../../components/ScrollToTop";
 
 const ServiceDetails = () => {
   const service = useLoaderData();
@@ -9,6 +10,7 @@ const ServiceDetails = () => {
   console.log(service);
   return (
     <div>
+      <ScrollToTop />
       <Banner info="Service Details" />
       <div className="grid service-details-layout gap-6">
         <div className="my-28">

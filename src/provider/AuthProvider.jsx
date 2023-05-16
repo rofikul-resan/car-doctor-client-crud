@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
       setUser(user);
       setLoading(false);
       if (user) {
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://car-doctor-server-omega-azure.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -55,7 +55,6 @@ const AuthProvider = ({ children }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             localStorage.setItem("car-token", data.token);
           });
       }
